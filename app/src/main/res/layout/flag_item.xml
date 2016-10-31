@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<variable
+			name="data"
+			type="de.handler.mobile.android.databindingexample.data.model.FlagData.WorldPopulation"/>
+
+		<variable
+			name="callback"
+			type="de.handler.mobile.android.databindingexample.data.ActionCallback"/>
+	</data>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="?attr/selectableItemBackground"
+		android:onClick="@{() -> callback.onClick(data)}"
+		android:orientation="horizontal"
+		android:padding="@dimen/item_margin">
+
+		<ImageView
+			android:layout_width="@dimen/item_width"
+			android:layout_height="@dimen/item_height"
+			app:selected="@{data.favorite}"/>
+
+		<TextView
+			style="@style/TextAppearance.AppCompat.Medium"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom"
+			android:text="@{data.name}"/>
+
+	</LinearLayout>
+</layout>
