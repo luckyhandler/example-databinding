@@ -1,5 +1,6 @@
 package de.handler.mobile.android.databindingexample.ui;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import de.handler.mobile.android.databindingexample.R;
@@ -21,6 +21,24 @@ import de.handler.mobile.android.databindingexample.databinding.FlagItemBinding;
 import de.handler.mobile.android.databindingexample.databinding.FragmentFlagListBinding;
 
 public class FlagListFragment extends Fragment {
+	private static final String ARG_COUNTRIES = "argument_countries";
+	private ActionCallback mActionCallback;
+
+	public static FlagListFragment newInstance(List<FlagData.WorldPopulation> countries) {
+		FlagListFragment fragment = new FlagListFragment();
+		Bundle bundle = new Bundle();
+		bundle.putParcelableArrayList(ARG_COUNTRIES, new ArrayList<>(countries));
+		fragment.setArguments(bundle);
+		return fragment;
+	}
+
+
+	@Override
+	public void onAttach(Context context) {
+		super.onAttach(context);
+		mActionCallback = (ActionCallback) context;
+	}
+
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,12 +48,9 @@ public class FlagListFragment extends Fragment {
 				container,
 				false);
 
-		ActionCallback actionCallback = new ActionCallback() {
-			@Override
-			public void onClick(FlagData.WorldPopulation worldPopulation) {
-				//TODO: continue implementation https://github.com/google/android-ui-toolkit-demos/tree/master/DataBinding/DataBoundRecyclerView/app/src/main;
-			}
-		};
+		List<FlagData.WorldPopulation> countries = getArguments().getParcelableArrayList(ARG_COUNTRIES);
+		WorldPopulationListAdapter worldPopulationListAdapter = new WorldPopulationListAdapter(mActionCallback, countries);
+		binding.fragmentFlagListRecyclerView.setAdapter(worldPopulationListAdapter);
 
 		return binding.getRoot();
 	}
@@ -47,14 +62,14 @@ public class FlagListFragment extends Fragment {
 	 * The parent class handles the item creation and this child class only implements the
 	 * bindItem to set values in a type checked way.
 	 */
-	private static class WorldPopulationAdapter extends DataBoundAdapter<FlagItemBinding> {
-		List<FlagData.WorldPopulation> mFlagDataList = new ArrayList<>();
+	private static class WorldPopulationListAdapter extends DataBoundAdapter<FlagItemBinding> {
+		private List<FlagData.WorldPopulation> mFlagDataList = new ArrayList<>();
 		private ActionCallback mActionCallback;
 
-		public WorldPopulationAdapter(ActionCallback actionCallback, FlagData.WorldPopulation... worldPopulations) {
+		WorldPopulationListAdapter(ActionCallback actionCallback, List<FlagData.WorldPopulation> worldPopulations) {
 			super(R.layout.flag_item);
 			mActionCallback = actionCallback;
-			Collections.addAll(mFlagDataList, worldPopulations);
+			mFlagDataList = worldPopulations;
 		}
 
 		@Override

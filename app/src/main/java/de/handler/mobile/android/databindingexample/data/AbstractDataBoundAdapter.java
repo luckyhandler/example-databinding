@@ -25,7 +25,7 @@ import java.util.List;
  * @param <T> The type of the ViewDataBinding class. Can be ommitted in multiple-binding-type use
  *           case.
  */
-abstract public class AbstractDataBoundAdapter<T extends ViewDataBinding>
+abstract class AbstractDataBoundAdapter<T extends ViewDataBinding>
 		extends RecyclerView.Adapter<DataBoundViewHolder<T>> {
 	private static final Object DB_PAYLOAD = new Object();
 	@Nullable

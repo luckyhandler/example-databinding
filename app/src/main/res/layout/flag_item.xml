@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<data>
 		<variable
@@ -17,20 +16,22 @@
 		android:layout_height="wrap_content"
 		android:background="?attr/selectableItemBackground"
 		android:onClick="@{() -> callback.onClick(data)}"
-		android:orientation="horizontal"
+		android:orientation="vertical"
 		android:padding="@dimen/item_margin">
 
 		<ImageView
 			android:layout_width="@dimen/item_width"
 			android:layout_height="@dimen/item_height"
-			app:selected="@{data.favorite}"/>
+			android:contentDescription="@null"
+			android:layout_gravity="center"
+			android:src="@{data.flag}"/>
 
 		<TextView
 			style="@style/TextAppearance.AppCompat.Medium"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_gravity="bottom"
-			android:text="@{data.name}"/>
+			android:layout_gravity="center"
+			android:text="@{data.country}"/>
 
 	</LinearLayout>
 </layout>

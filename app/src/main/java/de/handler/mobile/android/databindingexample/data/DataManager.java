@@ -5,6 +5,8 @@ import java.util.List;
 import de.handler.mobile.android.databindingexample.data.model.FlagData;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.Result;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -24,6 +26,8 @@ public class DataManager {
 	public DataManager(OnDataReceivedListener onDataReceivedListener) {
 		this.onDataReceivedListener = onDataReceivedListener;
 		Retrofit retrofit = new Retrofit.Builder()
+				.addConverterFactory(GsonConverterFactory.create())
+				.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
 				.baseUrl(FlagService.BASE_URL)
 				.build();
 
@@ -48,7 +52,7 @@ public class DataManager {
 
 			@Override
 			public void onNext(Result<FlagData> flagDataResult) {
-				onDataReceivedListener.onDataReceived(flagDataResult.response().body().worldPopulation);
+				onDataReceivedListener.onDataReceived(flagDataResult.response().body().getWorldPopulation());
 			}
 		});
 	}
