@@ -1,8 +1,9 @@
-package de.handler.mobile.android.databindingexample.data;
+package de.handler.mobile.android.databindingexample.ui.adapter;
 
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
 
+// from https://github.com/google/android-ui-toolkit-demos/tree/master/DataBinding/DataBoundRecyclerView
 abstract public class DataBoundAdapter<T extends ViewDataBinding> extends AbstractDataBoundAdapter<T> {
 	@LayoutRes
 	private final int mLayoutId;

@@ -1,4 +1,4 @@
-package de.handler.mobile.android.databindingexample.data;
+package de.handler.mobile.android.databindingexample.data.network;
 
 import de.handler.mobile.android.databindingexample.data.model.FlagData;
 import retrofit2.adapter.rxjava.Result;

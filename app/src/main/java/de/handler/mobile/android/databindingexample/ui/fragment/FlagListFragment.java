@@ -1,4 +1,4 @@
-package de.handler.mobile.android.databindingexample.ui;
+package de.handler.mobile.android.databindingexample.ui.fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.handler.mobile.android.databindingexample.R;
-import de.handler.mobile.android.databindingexample.data.ActionCallback;
-import de.handler.mobile.android.databindingexample.data.DataBoundAdapter;
-import de.handler.mobile.android.databindingexample.data.DataBoundViewHolder;
+import de.handler.mobile.android.databindingexample.ui.adapter.DataBoundAdapter;
 import de.handler.mobile.android.databindingexample.data.model.FlagData;
 import de.handler.mobile.android.databindingexample.databinding.FlagItemBinding;
 import de.handler.mobile.android.databindingexample.databinding.FragmentFlagListBinding;
+import de.handler.mobile.android.databindingexample.ui.callback.ActionCallback;
+import de.handler.mobile.android.databindingexample.ui.viewholder.DataBoundViewHolder;
 
 public class FlagListFragment extends Fragment {
 	private static final String ARG_COUNTRIES = "argument_countries";
@@ -56,12 +56,6 @@ public class FlagListFragment extends Fragment {
 	}
 
 
-	/**
-	 * This is an example of a data bound adapter use case where all items have the same type.
-	 * <p>
-	 * The parent class handles the item creation and this child class only implements the
-	 * bindItem to set values in a type checked way.
-	 */
 	private static class WorldPopulationListAdapter extends DataBoundAdapter<FlagItemBinding> {
 		private List<FlagData.WorldPopulation> mFlagDataList = new ArrayList<>();
 		private ActionCallback mActionCallback;
@@ -75,8 +69,8 @@ public class FlagListFragment extends Fragment {
 		@Override
 		protected void bindItem(DataBoundViewHolder<FlagItemBinding> holder, int position,
 								List<Object> payloads) {
-			holder.binding.setData(mFlagDataList.get(position));
-			holder.binding.setCallback(mActionCallback);
+			holder.mBinding.setData(mFlagDataList.get(position));
+			holder.mBinding.setCallback(mActionCallback);
 		}
 
 		@Override

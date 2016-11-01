@@ -1,4 +1,4 @@
-package de.handler.mobile.android.databindingexample.data;
+package de.handler.mobile.android.databindingexample.data.network;
 
 import java.util.List;
 
@@ -36,7 +36,8 @@ public class DataManager {
 
 	public void getFlagData() {
 		Observable<Result<FlagData>> result = service.getFlagData()
-				.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+				.subscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread());
 
 		result.subscribe(new Subscriber<Result<FlagData>>() {
 			@Override

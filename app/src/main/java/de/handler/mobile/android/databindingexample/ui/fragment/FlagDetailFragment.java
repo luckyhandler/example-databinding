@@ -1,4 +1,4 @@
-package de.handler.mobile.android.databindingexample.ui;
+package de.handler.mobile.android.databindingexample.ui.fragment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import de.handler.mobile.android.databindingexample.R;
 import de.handler.mobile.android.databindingexample.data.model.FlagData;
@@ -37,5 +39,13 @@ public class FlagDetailFragment extends Fragment {
 		binding.setWorldPopulation(worldPopulation);
 
 		return binding.getRoot();
+	}
+
+	@Override
+	public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+		if (enter) {
+			return AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_in);
+		}
+		return null;
 	}
 }

@@ -11,6 +11,14 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class implementing the Observable interface will allow the binding to attach a single listener
+ * to a bound object to listen for changes of all properties on that object.
+ * The Observable interface has a mechanism to add and remove listeners, but notifying is up to the developer.
+ * To make development easier, a base class, BaseObservable, was created to implement the listener registration mechanism.
+ * The data class implementer is still responsible for notifying when the properties change.
+ * This is done by assigning a Bindable annotation to the getter and notifying in the setter.
+ */
 public class FlagData extends BaseObservable implements Parcelable {
 	@SerializedName("worldpopulation")
 	@Bindable
@@ -56,7 +64,7 @@ public class FlagData extends BaseObservable implements Parcelable {
 
 	public static class WorldPopulation extends BaseObservable implements Parcelable {
 		@Bindable
-		private int rank;
+		private String rank;
 		@Bindable
 		private String country;
 		@Bindable
@@ -70,7 +78,7 @@ public class FlagData extends BaseObservable implements Parcelable {
 			notifyPropertyChanged(BR.flag);
 		}
 
-		public void setRank(int rank) {
+		public void setRank(String rank) {
 			this.rank = rank;
 			notifyPropertyChanged(BR.rank);
 		}
@@ -97,7 +105,7 @@ public class FlagData extends BaseObservable implements Parcelable {
 			return country;
 		}
 
-		public int getRank() {
+		public String getRank() {
 			return rank;
 		}
 
@@ -108,14 +116,14 @@ public class FlagData extends BaseObservable implements Parcelable {
 
 		@Override
 		public void writeToParcel(Parcel dest, int flags) {
-			dest.writeInt(this.rank);
+			dest.writeString(this.rank);
 			dest.writeString(this.country);
 			dest.writeString(this.population);
 			dest.writeString(this.flag);
 		}
 
 		WorldPopulation(Parcel in) {
-			this.rank = in.readInt();
+			this.rank = in.readString();
 			this.country = in.readString();
 			this.population = in.readString();
 			this.flag = in.readString();

@@ -1,4 +1,4 @@
-package de.handler.mobile.android.databindingexample.data;
+package de.handler.mobile.android.databindingexample.ui.adapter;
 
 import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
@@ -7,6 +7,9 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+/**
+ * Defines how to use the namespaces in xml and how they are bound to data for data binding.
+ */
 public class DataBindingAdapters {
 	@BindingAdapter("android:src")
 	public static void setImageUri(ImageView view, String imageUri) {

@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+		xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<data>
+
 		<variable
 			name="data"
 			type="de.handler.mobile.android.databindingexample.data.model.FlagData.WorldPopulation"/>
 
 		<variable
 			name="callback"
-			type="de.handler.mobile.android.databindingexample.data.ActionCallback"/>
+			type="de.handler.mobile.android.databindingexample.ui.callback.ActionCallback"/>
 	</data>
 
-	<LinearLayout
+	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="?attr/selectableItemBackground"
-		android:onClick="@{() -> callback.onClick(data)}"
-		android:orientation="vertical"
-		android:padding="@dimen/item_margin">
+		android:layout_height="wrap_content">
 
-		<ImageView
-			android:layout_width="@dimen/item_width"
-			android:layout_height="@dimen/item_height"
-			android:contentDescription="@null"
-			android:layout_gravity="center"
-			android:src="@{data.flag}"/>
-
-		<TextView
-			style="@style/TextAppearance.AppCompat.Medium"
-			android:layout_width="wrap_content"
+		<LinearLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:text="@{data.country}"/>
+			android:background="?attr/selectableItemBackground"
+			android:onClick="@{() -> callback.onClick(data)}"
+			android:orientation="vertical"
+			android:padding="@dimen/item_margin">
 
-	</LinearLayout>
+			<ImageView
+				android:layout_width="@dimen/item_width"
+				android:layout_height="@dimen/item_height"
+				android:layout_gravity="center"
+				android:contentDescription="@null"
+				android:src="@{data.flag}"/>
+
+			<TextView
+				style="@style/TextAppearance.AppCompat.Display1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:text="@{data.country}"/>
+
+		</LinearLayout>
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="@android:color/black"/>
+
+	</FrameLayout>
+
 </layout>

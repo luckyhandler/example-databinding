@@ -1,4 +1,4 @@
-package de.handler.mobile.android.databindingexample.data;
+package de.handler.mobile.android.databindingexample.ui.adapter;
 
 import android.databinding.OnRebindCallback;
 import android.databinding.ViewDataBinding;
@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.List;
+
+import de.handler.mobile.android.databindingexample.ui.viewholder.DataBoundViewHolder;
 
 /**
  * A reference implementation for an adapter that wants to use data binding "the right way". It
@@ -22,9 +24,10 @@ import java.util.List;
  * <p>
  * It can be used for both single type lists and multiple type lists.
  *
- * @param <T> The type of the ViewDataBinding class. Can be ommitted in multiple-binding-type use
+ * @param <T> The type of the ViewDataBinding class. Can be omitted in multiple-binding-type use
  *           case.
  */
+// from https://github.com/google/android-ui-toolkit-demos/tree/master/DataBinding/DataBoundRecyclerView
 abstract class AbstractDataBoundAdapter<T extends ViewDataBinding>
 		extends RecyclerView.Adapter<DataBoundViewHolder<T>> {
 	private static final Object DB_PAYLOAD = new Object();
@@ -55,7 +58,7 @@ abstract class AbstractDataBoundAdapter<T extends ViewDataBinding>
 	@CallSuper
 	public DataBoundViewHolder<T> onCreateViewHolder(ViewGroup parent, int viewType) {
 		DataBoundViewHolder<T> vh = DataBoundViewHolder.create(parent, viewType);
-		vh.binding.addOnRebindCallback(mOnRebindCallback);
+		vh.mBinding.addOnRebindCallback(mOnRebindCallback);
 		return vh;
 	}
 
@@ -66,7 +69,7 @@ abstract class AbstractDataBoundAdapter<T extends ViewDataBinding>
 		if (payloads.isEmpty() || hasNonDataBindingInvalidate(payloads)) {
 			bindItem(holder, position, payloads);
 		}
-		holder.binding.executePendingBindings();
+		holder.mBinding.executePendingBindings();
 	}
 
 	/**

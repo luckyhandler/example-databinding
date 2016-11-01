@@ -1,3 +1,5 @@
 <resources>
-	<string name="app_name">Data Binding Rocks</string>
+	<string name="app_name">World Population</string>
+	<string name="rank">Rank: %s</string>
+	<string name="population">Population: %s</string>
 </resources>
