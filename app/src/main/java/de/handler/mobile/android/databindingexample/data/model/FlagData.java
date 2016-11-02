@@ -21,7 +21,6 @@ import java.util.List;
  */
 public class FlagData extends BaseObservable implements Parcelable {
 	@SerializedName("worldpopulation")
-	@Bindable
 	private List<WorldPopulation> worldPopulation;
 
 
@@ -30,6 +29,7 @@ public class FlagData extends BaseObservable implements Parcelable {
 		notifyPropertyChanged(BR.worldPopulation);
 	}
 
+	@Bindable
 	public List<WorldPopulation> getWorldPopulation() {
 		return worldPopulation;
 	}
@@ -63,13 +63,9 @@ public class FlagData extends BaseObservable implements Parcelable {
 
 
 	public static class WorldPopulation extends BaseObservable implements Parcelable {
-		@Bindable
 		private String rank;
-		@Bindable
 		private String country;
-		@Bindable
 		private String population;
-		@Bindable
 		private String flag;
 
 
@@ -93,18 +89,22 @@ public class FlagData extends BaseObservable implements Parcelable {
 			notifyPropertyChanged(BR.country);
 		}
 
+		@Bindable
 		public String getFlag() {
 			return flag;
 		}
 
+		@Bindable
 		public String getPopulation() {
 			return population;
 		}
 
+		@Bindable
 		public String getCountry() {
 			return country;
 		}
 
+		@Bindable
 		public String getRank() {
 			return rank;
 		}

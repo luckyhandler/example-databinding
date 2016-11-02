@@ -42,6 +42,7 @@ public class FlagListFragment extends Fragment {
 	@Nullable
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		// Use DataBindingUtil for ListView or RecyclerView adapters
 		FragmentFlagListBinding binding = DataBindingUtil.inflate(
 				inflater,
 				R.layout.fragment_flag_list,
